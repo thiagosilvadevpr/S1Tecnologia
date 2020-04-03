@@ -12,7 +12,7 @@ begin
       
     mmIDsMovimento.Text := 
         'Codigos: ' + VarToStr(<CODIGOS_MOVIMENTO>);
-    
+        
     //ShowMessage(qryProdutos.SQL.Text);
 end;
 
