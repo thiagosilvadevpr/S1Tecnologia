@@ -1,13 +1,18 @@
 procedure BitBtn1OnClick(Sender: TfrxComponent);
-begin
+begin  
     qryProdutos.SQL.ADD(
         ' AND MOV.CODIGO IN ' + VarToStr(<CODIGOS_MOVIMENTO>)
     );
+      
     qryProdutos.SQL.ADD(
         ' GROUP BY '
         + ' ITM.IDPRODUTO,  '
         + ' ITM.DESCPRODUTO '
     );
+      
+    mmIDsMovimento.Text := 
+        'Codigos: ' + VarToStr(<CODIGOS_MOVIMENTO>);
+    
     //ShowMessage(qryProdutos.SQL.Text);
 end;
 
@@ -20,11 +25,11 @@ begin
         mmQuantidade.Color := $00EBEBEB;        
     end            
     else
-        begin              
-            mmIdProduto.Color := clWhite;
-            mmDescricao.Color := clWhite;
-            mmQuantidade.Color := clWhite;
-        end;         
+    begin              
+        mmIdProduto.Color := clWhite;
+        mmDescricao.Color := clWhite;
+        mmQuantidade.Color := clWhite;
+    end;         
 end;
 
 begin
