@@ -1,1 +1,0 @@
-  '        AND CODIGO_MOVIMENTACAO IN     '+ VarToStr(<CODIGOS_MOVIMENTO>)+      )' );
