@@ -1,6 +1,6 @@
 procedure BitBtn1OnClick(Sender: TfrxComponent);
 begin
-
+    
     if not ckTodos.Checked then
     begin
         qryMovimentos.SQL.ADD(
@@ -10,16 +10,25 @@ begin
         mmFiltroCliente.Text := 
             'Cliente: ' + cbCliente.Text;
     end;
-    
-    qryMovimentos.SQL.ADD(
-       ' ORDER BY CLI.RAZAO '                   
-    );  
 
+    qryMovimentos.SQL.ADD(
+        ' AND MOV.DATAEMISSAO BETWEEN ''' 
+        + mkDataInicial.Text
+        + ''' AND '''
+        + mkDataFinal.Text
+        + ''''                 
+    );
+
+    qryMovimentos.SQL.ADD(
+        ' ORDER BY CLI.RAZAO '
+    );  
+    
     //ShowMessage(qryMovimentos.SQL.Text);
 end;
 
 procedure MasterData1OnBeforePrint(Sender: TfrxComponent);
 begin
+    
     if Frac(<Line> / 2) = 0.5 then
     begin              
         mmCodigo.Color := $00EBEBEB;
@@ -33,12 +42,18 @@ begin
         mmDataEmissao.Color := clWhite;            
         mmIdMov.Color := clWhite;
         mmValorTotal.Color := clWhite;
-    end;         
+    end;             
 end;
 
 procedure DBLookupComboBox1OnClick(Sender: TfrxComponent);
 begin
-   ckTodos.Checked := False;                                                                               
+    ckTodos.Checked := False;                                                                               
+end;
+
+procedure DialogPage1OnShow(Sender: TfrxComponent);
+begin
+    mkDataInicial.Text := FormatDateTime('01/mm/yyyy', now);
+    mkDataFinal.Text := FormatDateTime('30/mm/yyyy', now);      
 end;
 
 begin
