@@ -1,0 +1,31 @@
+----------------------------------------------
+Status Movimentacoes
+----------------------------------------------
+  'ABERTO'                 //0
+  'PROMOVIDO'              //1
+  'PROMOVIDO/DESDOBRADO'   //2
+  'AGRUPADO'               //3
+  'ABERTO/DESDOBRADO'      //4
+  'FINALIZADO'             //5
+  'CANCELADO'              //6
+  'BLOQUEADO'              //7
+  'COTAÇÃO'                //8
+  'CONFERÊNCIA FINALIZADA' //9
+----------------------------------------------
+
+
+----------------------------------------------
+Status NFe
+----------------------------------------------
+  'REJEITADA'            //0
+  'AGUARDANDO'           //1
+  'AUTORIZADA'           //2
+  'CANCELADA'            //3
+  'INUTILIZADA'          //4
+  'DENEGADO'             //5
+  'NÃO ENVIADA'          //6
+  'ENVIANDO'             //7
+  'OFFLINE'              //8
+  'AUTORIZADA_OFFLINE'   //9
+  'RPS'                  //10
+  ----------------------------------------------
