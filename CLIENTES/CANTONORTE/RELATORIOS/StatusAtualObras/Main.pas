@@ -5,21 +5,21 @@ begin
 //TIPO DE RELATORIO SINTETICO/ANALITICO                                                                                   
     if rbSintetico.Checked then
     begin
-        pgSintetico.Visible := true;
-        page1.Visible := false;                                   
+        page1.Visible := True;
+        page2.Visible := False;                                   
     end;
 
     if rbAnalitico.Checked then
-    begin
-        pgSintetico.Visible := False;
-        page1.Visible := False;        
-        page2.Visible := True;                 
+    begin        
+        page2.Visible := True;
+        page1.Visible := False;
+        
     end;
     
 //TIPO DE LANCAMENTO PAG/REC                                                                  
     if RbPagar.Checked then
     begin
-        qry_lancamentos.SQL.Add(
+        qryFinanceiro.SQL.Add(
                 'AND LAN.PAGREC = ''A PAGAR''');
 
         mm_tiporelatorio.Text := 'Contas a Pagar';                                
@@ -39,6 +39,7 @@ begin
   begin
     qry_lancamentos.SQL.Add('AND LAN.DATAGERACAO BETWEEN ''' + 
        mk_datainicial.Text + ''' AND ''' + mk_datafinal.Text + '''');
+
     mm_periodo.Text := 'Periodo de Geração: ' + mk_datainicial.Text + ' até ' + mk_dataFinal.Text;
   end;
     
@@ -46,13 +47,15 @@ begin
   begin
     qry_lancamentos.SQL.Add('AND LAN.DATAVENCIMENTO BETWEEN ''' + 
        mk_datainicial.Text + ''' AND ''' + mk_datafinal.Text + '''');
+
     mm_periodo.Text := 'Periodo de Vencimento: ' + mk_datainicial.Text + ' até ' + mk_dataFinal.Text;
   end;
     
   if rb_pagamento.Checked then
   begin
-    qry_lancamentos.SQL.Add('AND PAG.DATA BETWEEN ''' + 
+    qry_lancamentos.SQL.Add('AND PAG.DATA BETWEEN ''' +   
        mk_datainicial.Text + ''' AND ''' + mk_datafinal.Text + '''');
+
     mm_periodo.Text := 'Periodo de Pagamento: ' + mk_datainicial.Text + ' até ' + mk_dataFinal.Text;
   end;        
 //--
@@ -60,6 +63,7 @@ begin
 //DEMAIS FILTROS                                       
   if not ck_cliforn.Checked then
   begin
+    qry_lancamentos.SQL.Add('AND LAN.CODFORNECEDOR = ' + FloatToStr(cb_cliforn.KeyValue));
     qry_lancamentos.SQL.Add('AND LAN.CODFORNECEDOR = ' + FloatToStr(cb_cliforn.KeyValue));
     mm_filtro_cliente.Text := 'Cliente: ' + cb_cliforn.Text;                                                                                                            
   end;            
