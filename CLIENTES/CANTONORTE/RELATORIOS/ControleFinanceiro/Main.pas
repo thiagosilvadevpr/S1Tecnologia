@@ -68,8 +68,14 @@ begin
     if not ckCentroCusto.Checked then
     begin
         mmCentroCusto.Text := 'Centro de Custos: ' + cbCentroCusto.Text;
-        ADOQuery1.SQL.Add( ''    
         
+        ADOQuery1.SQL.Add( 
+            ADOQuery1.SQL.Add( 'AND LAN.DATAVENCIMENTO BETWEEN '''
+                + mkDataInicial.Text
+                + ''' AND '''
+                + mkDataFinal.Text
+                +''''
+            );                
         );
     end;
 
